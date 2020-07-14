@@ -1,0 +1,2058 @@
+#include<iostream.h>
+#include<string.h>
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<dos.h>
+#include<fstream.h>
+#include<time.h>
+
+fstream data;
+
+
+class movie
+{
+ private :
+
+ int noofseats;
+
+ public:
+ char mn[50];
+ float roughtotal,gst,total;
+
+ int moviecode;
+ char  time[8];
+ int screenno;
+ int billno;
+
+ movie()
+ {
+  moviecode=0;
+  screenno=0;
+ }
+ void moviedata();
+ void enterdatatime();
+ void showdatatime();
+ void totalseats();
+ void noofseats1();
+ void billoutput();
+ void calculatetotal();
+ void modify();
+
+
+ int bilno()
+ {
+   return billno;
+ }
+
+ int nos()
+ {
+  return noofseats;
+ }
+}m1;
+
+
+void movie:: modify()
+{
+   gotoxy(30,11);
+   cout<<"TICKET NO :-";
+   cout<<billno<<endl;
+
+  gotoxy(30,12);
+  cout<<"Movie code :-"<<moviecode<<endl;
+  gotoxy(30,13);
+  cout<<"Movie name:-"<<mn<<endl;
+  gotoxy(30,14);
+  cout<<"Movie time:-"<<time<<endl;
+  gotoxy(30,15);
+  cout<<"Screen No. :-"<<screenno<<endl;
+  gotoxy(30,16);
+  cprintf("No. of seats :-");
+  gotoxy(44,16);
+  cout<<"   ";
+  gotoxy(44,16);
+  cin>>noofseats;
+  while(noofseats<1 || noofseats>9)
+  {
+   gotoxy(44,16);
+   cprintf("   ");
+   gotoxy(44,16);
+   cin>>noofseats;
+  }
+  gotoxy(30,17);
+  int roughtotal=noofseats*120;
+  cout<<"Total :- Rs.";
+  gotoxy(42,17);
+  cout<<"   ";
+  gotoxy(42,17);
+  cout<<roughtotal;
+  gotoxy(30,18);
+  int gst=roughtotal/20;
+  cout<<"GST 5% :- Rs."<<gst;
+  gotoxy(30,19);
+  int total=roughtotal+gst;
+  cout<<"Total Amount :-Rs."<<total;
+
+
+}
+
+
+
+void movie:: billoutput()
+{
+   gotoxy(30,11);
+   cout<<"TICKET NO :-";
+   cout<<billno<<endl;
+
+  gotoxy(30,12);
+  cout<<"Movie code :-"<<moviecode<<endl;
+  gotoxy(30,13);
+  cout<<"Movie name:-"<<mn<<endl;
+  gotoxy(30,14);
+  cout<<"Movie time:-"<<time<<endl;
+  gotoxy(30,15);
+  cout<<"Screen No. :-"<<screenno<<endl;
+  gotoxy(30,16);
+  cout<<"No. of seats :-"<<noofseats<<endl;
+  gotoxy(30,17);
+  int roughtotal=noofseats*120;
+  cout<<"Total :- Rs."<<roughtotal;
+  gotoxy(30,18);
+  int gst=roughtotal/20;
+  cout<<"GST 5% :- Rs."<<gst;
+  gotoxy(30,19);
+  int total=roughtotal+gst;
+  cout<<"Total Amount :-Rs."<<total;
+
+
+}
+
+void movie:: noofseats1()
+{
+   renter:
+ gotoxy(44,4);
+ cout<<"enter no. of seats to be booked ";
+ gotoxy(54,5);
+ cout<<"(max 9 only)";
+ gotoxy(58,6);
+ cin>>noofseats;
+ if(noofseats>9 || noofseats<0)
+ {
+  gotoxy(64,6);
+  cout<<"INVALID";
+  gotoxy(58,6);
+  cout<<"  ";
+  gotoxy(58,6);
+  goto renter;
+ }
+
+
+
+}
+
+void movie :: totalseats()
+{
+ renter:
+ gotoxy(44,4);
+ cout<<"enter no. of seats to be booked ";
+ gotoxy(54,5);
+ cout<<"(max 5 only)";
+ gotoxy(58,6);
+ cin>>noofseats;
+ if(noofseats>5 || noofseats<0)
+ {
+  gotoxy(64,6);
+  cout<<"INVALID";
+  goto renter;
+ }
+}
+
+ void movie :: moviedata()
+ {
+  gotoxy(9,23);
+ cout<<"Enter movie code :-";
+ cin>>moviecode;
+ while(moviecode<1 || moviecode>12)
+ {
+  gotoxy(27,23);
+  cout<<"  ";
+  gotoxy(27,23);
+  cin>>moviecode;
+ }
+ gotoxy(35,23);
+ cout<<"Enter movie name :- ";
+ cin>>mn;
+
+ }
+
+void movie :: enterdatatime()
+{
+ back :
+ int moviecode=0;
+ gotoxy(4,22);
+ cout<<"Enter movietime code :-";
+ cin>>moviecode;
+ while(moviecode<0 && moviecode>7)
+ {
+  gotoxy(27,22);
+  cout<<"    ";
+  gotoxy(27,22);
+  cin>>moviecode;
+ }
+ if(moviecode==1)
+ {
+  strcpy(time,"11:00pm");
+ }
+ else if(moviecode==2)
+ {
+  strcpy(time,"12:45pm");
+ }
+ else if(moviecode==3)
+ {
+  strcpy(time,"2:00pm");
+ }
+ else if(moviecode==4)
+ {
+  strcpy(time,"4:30pm");
+ }
+  else if(moviecode==5)
+ {
+  strcpy(time,"6:45pm");
+ }
+  else if(moviecode==6)
+ {
+  strcpy(time,"9:45pm");
+ }
+ else
+ {
+  gotoxy(4,22);
+  cout<<"ERROR";
+  gotoxy(26,22);
+  cout<<"  ";
+  delay(2500);
+  goto back;
+
+ }
+
+ gotoxy(48,22);
+ cout<<"Enter screen no:-";
+ cin>>screenno;
+ while(screenno>3 || screenno<1)
+ {
+  gotoxy(65,22);
+  cout<<"  ";
+  gotoxy(65,22);
+  cin>>screenno;
+ }
+
+}
+
+void movie :: showdatatime()
+{
+
+ cout<<"Enter movietime:-";
+ cout<<time<<endl;
+ cout<<"Enetr screen no:-";
+ cout<<screenno;
+
+
+}
+
+
+
+void bookticketpg1();
+void bookticketpg2data();
+void bookticketpg1data();
+void inox();
+void border1(char desq=1500);
+void line();
+void box();
+void seatsdes();
+void bill();
+void search();
+void modify();
+void loading();
+void delete1();
+int b;
+int bi;
+void main()
+{
+ mainscreen:
+ clrscr();
+
+
+ border1();
+
+ inox();
+ box();
+ gotoxy(31,18);
+ textcolor(GREEN);
+ cprintf("1. Book Tickets");
+ gotoxy(31,20);
+ cprintf("2. Adminstrator");
+ gotoxy(29,23);
+ textcolor(3);
+ cprintf("Enter your choice :-");
+ textcolor(WHITE);
+ int choice=0;
+ again:
+ gotoxy(49,23);
+ cout<<" ";
+ gotoxy(49,23);
+ cin>>choice;
+ if(choice==1)
+ {
+   clrscr();
+   border1();
+   line();
+
+    char a[15]="WELCOME TO INOX";
+    textcolor(RED);
+    gotoxy(33,3);
+    for(int l=0;l<15;l++)
+     {
+      cout<<a[l];
+      delay(130);
+     }
+
+
+   bookticketpg1();
+
+   bookticketpg1data();
+
+   bookticketpg2data();
+
+   seatsdes();
+
+   bill();
+
+   gotoxy(30,22);
+   cout<<"press 1 for main screen";
+   gotoxy(30,23);
+   cout<<"press 0 for exit";
+   gotoxy(30,24);
+   cout<<"Enter your choice:-";
+   int yu=0;
+   cin>>yu;
+    while(yu<0 || yu>1)
+   {
+    gotoxy(49,24);
+    cout<<"  ";
+    cin>>yu;
+   }
+
+   if(yu==1)
+   {
+    goto mainscreen;
+   }
+   if(yu==0)
+   {
+    exit(0);
+   }
+
+
+
+
+ }
+ else if(choice==2)
+ {
+  clrscr();
+  border1();
+  line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+     gotoxy(30,11);
+  cout<<"Username :-";
+  char un[20];
+   cin>>un;
+  if(strcmp(un,"darshan")==0 || strcmp(un,"janak")==0 || strcmp(un,"jash")==0)
+  {
+   gotoxy(30,12);
+   cout<<"password :-";
+   char ps[6];
+    for(int je=0;je<5;je++)
+	  {
+	    ps[je]=getch();
+	    cout<<"*";
+	  }
+     if(ps[0]=='q'&& ps[1]=='w'&&ps[2]=='e'&&ps[3]=='r')
+     {
+      loading();
+      clrscr();
+      s1:
+      border1();
+
+      search();
+       int choicemd=0;
+       cin>>choicemd;
+       while(choicemd<=0 || choicemd>=3)
+       {
+	gotoxy(42,23);
+	cout<<"   ";
+	gotoxy(50,23);
+	cout<<"ERROR";
+	delay(2500);
+	gotoxy(42,23);
+	cin>>choicemd;
+       }
+       if(choicemd==1)
+       {
+	modify();
+       }
+       if(choicemd==2)
+       {
+	delete1();
+       }
+       gotoxy(23,23);
+       cout<<"Press 1 to return 0 to exit:-";
+       int ret=0;
+       cin>>ret;
+       if(ret==1)
+       {
+	goto s1;
+       }
+       else
+       {
+	exit(0);
+       }
+
+     }
+     else
+     {
+      gotoxy(55,12);
+      cout<<"wrong password";
+      delay(2500);
+      exit(0);
+     }
+
+
+
+  }
+  else
+  {
+   exit(0);
+  }
+
+
+
+ }
+ else
+ {
+  gotoxy(52,23);
+  cprintf("Enter valid code");
+  goto again;
+
+ }
+
+ getch();
+}
+void border1(char des)
+{
+
+ for(int i=0 ;i<79;i++)
+ {
+   for(int j=0;j<79;j++)
+    {
+     if(i==0 )
+      {
+       gotoxy(i,j);
+       cout<<des;
+      }
+     if(j==25)
+      {
+       gotoxy(i,j);
+       cout<<des;
+      }
+     if(i==1)
+      {
+       gotoxy(i,j);
+       cout<<des;
+      }
+
+    }
+ }
+  for(int s=2;s<=24;s++)
+  {
+    gotoxy(80,s);
+    cout<<des;
+  }
+}
+
+void box()
+{           char t=1500;
+
+   for(int y=17;y<=24;y++)
+   {
+     gotoxy(28,y);
+     cout<<t;
+   }
+   for(int w=28;w<=50;w++)
+   {
+    gotoxy(w,24);
+    cout<<t;
+   }
+   for(int q=23;q>=17;q--)
+   {
+    gotoxy(50,q);
+    cout<<t;
+   }
+   for(int f=28;f<=50;f++)
+   {
+    gotoxy(f,16);
+    cout<<t;
+   }
+
+   for(int g=29;g<=49;g++)
+   {
+     gotoxy(g,21);
+     cout<<t;
+   }
+}
+
+void inox()
+{ char a=1500;  char a1=1466;
+
+textcolor(WHITE);
+gotoxy(25,3);
+cout<<a;
+gotoxy(26,3);
+cout<<a;
+gotoxy(27,3);  /*upper line*/
+cout<<a;
+gotoxy(28,3);
+cout<<a;
+gotoxy(29,3);
+cout<<a;
+
+
+
+gotoxy(27,4);
+cout<<a1;
+gotoxy(27,5);
+cout<<a1;
+gotoxy(27,6); /*middle line*/
+cout<<a1;
+gotoxy(27,7);
+cout<<a1;
+
+
+
+gotoxy(25,7);
+cout<<a;
+gotoxy(26,7);
+cout<<a;
+gotoxy(27,7);
+cout<<a;     /*bottom line*/
+gotoxy(28,7);
+cout<<a;
+gotoxy(29,7);
+cout<<a;
+
+
+char x=1229;
+
+
+
+
+
+
+/*for n*/
+
+gotoxy(33,4);
+cout<<a1;
+gotoxy(33,5);
+cout<<a1;
+gotoxy(33,6);/*for first line*/
+cout<<a1;
+gotoxy(33,7);
+cout<<a1;
+
+
+
+gotoxy(34,4);
+cout<<x;
+gotoxy(35,5);
+cout<<x;
+gotoxy(36,6);/*for middle n*/
+cout<<x;
+gotoxy(37,7);
+cout<<x;
+
+gotoxy(39,7);
+cout<<a1;
+gotoxy(39,6);
+cout<<a1;
+gotoxy(39,5);
+cout<<a1;
+gotoxy(39,4);
+cout<<a1;
+
+textcolor(YELLOW);
+
+/*inox o*/
+gotoxy(43,3);
+cout<<"o";
+
+gotoxy(45,3);
+cout<<"o";
+
+gotoxy(46.5,4);
+cout<<"o";
+
+gotoxy(46,5);
+cout<<"o";
+
+gotoxy(46,6);
+cout<<"o";
+
+gotoxy(42,4);
+cout<<"o";
+
+gotoxy(42,5);
+cout<<"o";
+
+gotoxy(42,6);
+cout<<"o";
+
+gotoxy(43,7);
+cout<<"o";
+
+gotoxy(45,7);
+cout<<"o";
+
+textcolor(BLUE);
+/*inox x*/
+
+gotoxy(50,3);
+cout<<"x";
+
+gotoxy(51,4.5);
+cout<<"x";
+
+gotoxy(52,5);
+cout<<"x";
+
+gotoxy(53,6.5);
+cout<<"x";
+
+gotoxy(54,7);
+cout<<"x";
+
+
+
+
+  gotoxy(50,7);
+  cout<<"x";
+  gotoxy(51,6.5);
+  cout<<"x";
+  gotoxy(52,5);
+  cout<<"x";
+  gotoxy(53,4.5);
+  cout<<"x";
+  gotoxy(54,3);
+  cout<<"x";
+
+
+
+/*head line*/
+
+
+  textcolor(YELLOW);
+  gotoxy(33,10);
+  cprintf("Live the ");
+  textcolor(1285844);
+  cprintf("Music");
+
+  textcolor(YELLOW);
+  gotoxy(33,11);
+  cprintf("Live the ");
+  textcolor(1285844);
+  cprintf("Show");
+
+
+  textcolor(YELLOW);
+  gotoxy(33,12);
+  cprintf("Live the ");
+  textcolor(1285844);
+  cprintf("Experience");
+}
+
+void line()
+{
+ char a=1500;
+ for(int u=2;u<80;u++)
+ {
+  gotoxy(u,4);
+  cout<<a;
+ }
+}
+
+void bookticketpg1()
+{
+ char a=1466;
+ char b=1481;
+ gotoxy(3,6);
+ cout<<b;         //top left
+ for(int r=7;r<=23;r++)    //left vertical line
+ {
+   gotoxy(3,r);
+   cout<<a;
+ }
+ char c=1480;
+ gotoxy(3,24);
+ cout<<c;  //left bottom
+ char d=1485;
+ for(int y=4;y<=76;y++) //bottom line
+ {
+  gotoxy(y,24);
+  cout<<d;
+ }
+ char e=1468;
+ gotoxy(77,24);
+ cout<<e;        //rigth bottom
+ for(int w=23;w>=7;w--)        //right vertical
+ {
+   gotoxy(77,w);
+   cout<<a;
+ }
+ char q=1467;
+ gotoxy(77,6);          //right top
+ cout<<q;
+ for(int x=76;x>=4;x--)           //top line
+ {
+  gotoxy(x,6);
+  cout<<d;
+ }
+
+ char as=1483;
+ gotoxy(26,6);                   //left box top
+ cout<<as;
+
+ for(int ty=7;ty<=21;ty++)
+ {
+  gotoxy(26,ty);
+  cout<<a;             //left box right line
+ }
+
+  char rt=1482;
+  gotoxy(26,22);
+  cout<<rt;         //left box bottom
+
+  gotoxy(53,6);
+  cout<<as;      //right box top
+
+  for(int ht=7;ht<=21;ht++)
+  {
+    gotoxy(53,ht);
+    cout<<a;
+  }
+  gotoxy(53,22);        //right box bottom
+  cout<<rt;
+  char sw=1465;
+  gotoxy(77,22);
+  cout<<sw;
+  char gd=1484;
+  gotoxy(3,22);
+  cout<<gd;
+  for(int de=4;de<=76;de++)
+  {
+    if(de==53 ||de==26)
+    {
+    }
+   else
+    {
+     gotoxy(de,22);
+     cout<<d;
+    }
+  }
+   char vc=1486;
+  gotoxy(3,8);
+  cout<<gd;
+  for(int hg=4;hg<=77;hg++)
+  {
+    gotoxy(hg,8);
+    cout<<d;
+    if(hg==26 || hg==53)
+    {
+     gotoxy(hg,8);
+     cout<<vc;
+    }
+    if(hg==77)
+    {
+     gotoxy(hg,8);
+     cout<<sw;
+    }
+
+  }
+
+
+
+}
+
+void bookticketpg1data()
+{
+   data.open("bill.txt",  ios::in);
+   while(data.read((char*)&m1,sizeof(m1)))
+   {
+    m1.billno=m1.bilno();
+   }
+    m1.billno++;  
+    ::bi=m1.billno;
+    data.close();
+
+
+  rewrite :
+  movieagain:
+ gotoxy(9,7);
+ textcolor(GREEN);
+ cprintf("Now Showing");
+ gotoxy(7,10);
+ cout<<"1. Gold";
+ gotoxy(7,12);
+ cout<<"2. Papillon ";
+ gotoxy(7,14);
+ cout<<"3. Mulk";
+ gotoxy(7,16);
+ cout<<"4. Redrum";
+ gotoxy(7,18);
+ cout<<"5. Smallfoot";
+ gotoxy(7,20);
+ cout<<"6. Searching";
+
+
+ gotoxy(32,7);
+ textcolor(RED);
+ cprintf("Movie of the week ");
+ gotoxy(29,12);
+ cout<<"GOLD";
+ gotoxy(29,14);
+ cout<<"Category :- Sports";
+ gotoxy(29,16);
+ cout<<"Language :- Hindi";
+ gotoxy(29,18);
+ cout<<"Duration :- 2 hrs 20 min";
+
+
+
+
+ gotoxy(58,7);
+ textcolor(YELLOW);
+ cprintf("Upcoming movies ");
+ gotoxy(58,10);
+ cout<<"7. Andhadhun";
+ gotoxy(58,12);
+ cout<<"8. Fryday";
+ gotoxy(58,14);
+ cout<<"9. Jalebi";
+ gotoxy(57,16);
+ cout<<"10. Tumbbad";
+ gotoxy(57,18);
+ cout<<"11. Firstman";
+ gotoxy(57,20);
+ cout<<"12. Karwaan";
+
+ m1.moviedata();
+
+ int yes=0;
+ if((strcmp(m1.mn,"Gold")==0 || strcmp(m1.mn,"gold")==0 ) && m1.moviecode==1)
+ { error:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+   data.open("bill.txt",ios::in);
+   gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"1";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Gold";
+
+   gotoxy(9,10);
+   cout<<"Category :- Sports";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 2 hrs 20 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * * ";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+   else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error;
+   }
+ }
+ else if((strcmp(m1.mn,"Papillon")==0 || strcmp(m1.mn,"papillon")==0 ) && m1.moviecode==2)
+ {
+   error1:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+  gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"2";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Papillon";
+   gotoxy(9,10);
+   cout<<"Category :- Drama";
+   gotoxy(9,12);
+   cout<<"Language :- English";
+   gotoxy(9,14);
+   cout<<"Duration :- 2 hrs 13 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * ";
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+    else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error1;
+   }
+
+ }
+  else if((strcmp(m1.mn,"Mulk")==0 || strcmp(m1.mn,"mulk")==0 ) && m1.moviecode==3)
+ { error2:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+  gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"3";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Mulk";
+   gotoxy(9,10);
+   cout<<"Category :- Drama";
+   gotoxy(9,12);
+   cout<<"Language :- English";
+   gotoxy(9,14);
+   cout<<"Duration :- 2 hrs 20 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * *";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error2;
+   }
+
+ }
+  else if((strcmp(m1.mn,"Redrum")==0 || strcmp(m1.mn,"redrum")==0 ) && m1.moviecode==4)
+ { error3:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+  gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"4";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Redrum";
+   gotoxy(9,10);
+   cout<<"Category :- Psychological Thriller";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 54 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * *";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error3;
+   }
+ }
+  else if((strcmp(m1.mn,"Smallfoot")==0 || strcmp(m1.mn,"smallfoot")==0 ) && m1.moviecode==5)
+ { error4:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+  gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"5";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Smallfoot";
+
+   gotoxy(9,10);
+   cout<<"Category :- Animation , Adventure , Comedy";
+   gotoxy(9,12);
+   cout<<"Language :- English";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 36 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * 1/2";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error4;
+   }
+ }
+  else if((strcmp(m1.mn,"Searching")==0 || strcmp(m1.mn,"searching")==0 ) && m1.moviecode==6)
+ { error5:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"6";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Searching";
+   gotoxy(9,10);
+   cout<<"Category :- Mystery / thriller";
+   gotoxy(9,12);
+   cout<<"Language :- English";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 42 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * * 1/2";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error5;
+   }
+
+ }
+  else if((strcmp(m1.mn,"Andhadhun")==0 || strcmp(m1.mn,"andhadhun")==0 ) && m1.moviecode==7)
+ { error6:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"7";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Andhadhun";
+   gotoxy(9,10);
+   cout<<"Category :- Thriller";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 2 hrs 15 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * * 1/2";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error6;
+   }
+
+ }
+   else if((strcmp(m1.mn,"Fryday")==0 || strcmp(m1.mn,"fryday")==0 ) && m1.moviecode==8)
+ { error7:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"8";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Fryday";
+
+   gotoxy(9,10);
+   cout<<"Category :- Comedy";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 54 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * 1/2  ";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error7;
+   }
+
+ }
+    else if((strcmp(m1.mn,"Jalebi")==0 || strcmp(m1.mn,"jalebi")==0 ) && m1.moviecode==9)
+ { error8:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"9";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Jalebi";
+    gotoxy(9,10);
+   cout<<"Category :- Romance,Drama";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 52 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * *";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error8;
+   }
+
+ }
+     else if((strcmp(m1.mn,"Tumbbad")==0 || strcmp(m1.mn,"tumbbad")==0 ) && m1.moviecode==10)
+ { error9:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"10";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Tumbbad";
+   gotoxy(9,10);
+   cout<<"Category :- Horror / fantasy";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 53 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * *";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error9;
+   }
+
+ }
+     else if((strcmp(m1.mn,"Firstman")==0 || strcmp(m1.mn,"firstman")==0 ) && m1.moviecode==11)
+ { error10:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"11";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Firstman";
+   gotoxy(9,10);
+   cout<<"Category :- Biography , Drama";
+   gotoxy(9,12);
+   cout<<"Language :- English";
+   gotoxy(9,14);
+   cout<<"Duration :- 2 hrs 21 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * * 1/2";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+      border1();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error10;
+   }
+
+ }
+     else if((strcmp(m1.mn,"Karwaan")==0 || strcmp(m1.mn,"karwaan")==0 ) && m1.moviecode==12)
+ { error11:
+   yes=1;
+   clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+    gotoxy(9,6);
+  cout<<"Movie code :-";
+  cout<<"12";
+  gotoxy(9,8);
+  cout<<"Movie name :- ";
+  cout<<"Karwaan";
+   gotoxy(9,10);
+   cout<<"Category :- Drama / Comedy";
+   gotoxy(9,12);
+   cout<<"Language :- Hindi";
+   gotoxy(9,14);
+   cout<<"Duration :- 1 hrs 54 min";
+   gotoxy(9,16);
+   cout<<"Ratings :- * * * 1/2";
+
+   gotoxy(9,22);
+   cout<<"press y to book ticket and n to go back :-  ";
+   char y;
+   cin>>y;
+   if(y=='y')
+   {
+    clrscr();
+
+   border1();
+
+   }
+   else if(y=='n')
+   {
+    clrscr();
+   border1();
+
+   line();
+   bookticketpg1();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+    goto movieagain;
+   }
+    else
+   {
+    gotoxy(35,20);
+    cout<<"ERROR plz write again";
+    delay(500);
+    goto error11;
+   }
+
+ }
+ if (yes!=1)
+  {
+    border1();
+    bookticketpg1();
+    gotoxy(33,3);
+    cout<<"WELCOME TO INOX";
+    gotoxy(28,23);
+    cout<<"  ";
+    gotoxy(55,23);
+    cout<<"         ";
+    goto rewrite;
+  }
+
+
+}
+
+void bookticketpg2data()    /*movietime and screen no function*/
+{
+  clrscr();
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+  gotoxy(12,6);
+  cout<<"Movie Time";
+  gotoxy(5,9);
+  cout<<"1. 11:00am";
+  gotoxy(20,9);
+  cout<<"2. 12:45pm";
+  gotoxy(5,12);
+  cout<<"3. 2:00pm";
+  gotoxy(20,12);
+  cout<<"4. 4:30pm";
+  gotoxy(5,15);
+  cout<<"5. 6:45pm";
+  gotoxy(20,15);
+  cout<<"6. 9:45pm";
+
+
+
+  gotoxy(53,6);
+  cout<<"Movie Screen";
+
+  gotoxy(50,9);
+  cout<<"Screen No :- 1";
+
+  gotoxy(50,12);
+  cout<<"Screen No :- 2";
+
+  gotoxy(50,15);
+  cout<<"Screen No :- 3";
+
+  char hdf=1466;
+  for(int bva=5;bva<=24;bva++)
+	{
+	 gotoxy(40,bva);
+	 cout<<hdf;
+	}
+
+
+
+
+ m1.enterdatatime();
+
+
+}
+
+void seatsdes()
+{
+  clrscr();
+
+   border1();
+
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+
+
+
+ char q=1500;
+ int w=1;
+ for(int i=8;i<=36;i=i+3)
+ {
+   gotoxy(i,4);
+  cout<<w;
+  gotoxy(i,6);
+  cout<<q;
+  gotoxy(i,8);
+  cout<<q;
+  gotoxy(i,10);
+  cout<<q;
+  gotoxy(i,12);
+  cout<<q;
+  gotoxy(i,14);
+  cout<<q;
+  gotoxy(i,16);
+  cout<<q;
+  gotoxy(i,18);
+  cout<<q;
+  gotoxy(i,20);
+  cout<<q;
+  gotoxy(i,22);
+  cout<<q;
+  w=w+1;
+  for(int j=8;j<=36;j++)
+  {
+   gotoxy(j,24);
+   cout<<q;
+  }
+ }
+
+ gotoxy(5,6);
+ cout<<"A";
+ gotoxy(5,8);
+ cout<<"B";
+ gotoxy(5,10);
+ cout<<"C";
+ gotoxy(5,12);
+ cout<<"D";
+ gotoxy(5,14);
+ cout<<"E";
+ gotoxy(5,16);
+ cout<<"F";
+ gotoxy(5,18);
+ cout<<"G";
+ gotoxy(5,20);
+ cout<<"H";
+ gotoxy(5,22);
+ cout<<"I";
+
+   char hdf=1466;
+  for(int bva=5;bva<=24;bva++)
+	{
+	 gotoxy(40,bva);
+	 cout<<hdf;
+	}
+
+m1.noofseats1();
+
+
+ gotoxy(42,9);
+ cout<<"Write seats code with reference with ";
+ gotoxy(54,10);
+ cout<<"the layout.";
+ int er=12;
+int qw[9];
+char ty[9];
+int acd=0;
+int wsd=8;
+char tyq=1489;
+int nos1=m1.nos();
+ for(int oi=1; oi<=nos1;oi=oi+1)
+ {
+  rt :
+  wsd=8;
+  gotoxy(54,er);
+  cout<<oi<<". ";
+  cin>>ty[acd]>>qw[acd];
+   if(oi>1)
+  {
+   for(int bhu=0;bhu<=oi;bhu++)
+   {
+       if((qw[bhu]==qw[bhu+1]) && (ty[bhu]==ty[bhu+1]))
+    {
+     gotoxy(56,er);
+      cout<<"   ";
+      gotoxy(62,er);
+      cout<<"ERROR";
+      delay(1500);
+      gotoxy(62,er);
+      cout<<"     ";
+      gotoxy(56,er);
+     goto rt;
+    }
+   }
+  }
+
+   if(ty[acd]=='A')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,6);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='B')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,8);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='C')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,10);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='D')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,12);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='E')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,14);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='F')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,16);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='G')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,18);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='H')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,20);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else if(ty[acd]=='I')
+  {
+   for(int yp=1;yp<=9;yp++)
+   {
+     if(qw[acd]==yp)
+    {
+     gotoxy(wsd,22);
+     cout<<tyq;
+    }
+    wsd=wsd+3;
+   }
+  }
+  else
+  {
+   gotoxy(56,er);
+   cout<<"   ";
+   gotoxy(56,er);
+  goto rt;
+  }
+  er=er+1;
+  acd=acd+1;
+ }
+}
+
+
+void bill()
+{
+ clrscr();
+
+   border1();
+   line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";cout<<endl;
+   gotoxy(25,7);
+   cout<<"(Note :- amount of 1 ticket is Rs.120)";
+
+
+
+
+     time_t td;
+
+   putenv("TZ=PST8PDT");
+   tzset();
+   time(&td);
+   gotoxy(30,10);
+   printf( asctime(localtime(&td)));
+
+
+       data.open("bill.txt",ios::out | ios::app);
+       m1.billoutput();
+       data.write((char*)&m1,sizeof(m1));
+       data.close();
+
+
+
+       data.open("bill.txt",ios::in);
+       while(data.read((char*)&m1,sizeof(m1)))
+       {
+	if(::bi==m1.bilno())
+	{
+	 m1.billoutput();
+	}
+       }
+       data.close();
+
+
+
+
+
+   getch();
+}
+
+void search()
+{   search1:
+
+    clrscr();
+
+   border1();
+  line();
+   gotoxy(33,3);
+   cout<<"WELCOME TO INOX";
+   int pla=7;
+   data.open("bill.txt",ios::in);
+   data.seekg(0);
+   gotoxy(63,6);
+   cout<<"TICKET No. present";
+   char li=1466;
+   for(int cv=6;cv<=24;cv++)
+   {
+    gotoxy(62,cv);
+    cout<<li;
+   }
+   while(data.read((char*)&m1,sizeof(m1)))
+   {
+    gotoxy(70,pla);
+    int bi=m1.bilno();
+    cout<<bi<<endl;
+    pla++;
+
+   }
+   data.close();
+
+   gotoxy(20,6);
+   cout<<"Enter your ticket no to search :-";
+   cin>>::b;
+
+
+
+   int l=0;
+   data.open("bill.txt", ios::in);
+   while(data.read((char*)&m1,sizeof(m1)))
+   {
+    if(b==m1.bilno())
+     {
+       m1.billoutput();
+       l=l+1;
+
+     }
+   }
+    data.close();
+
+   if(l==0)
+   {
+    gotoxy(30,15);
+    cout<<"No record found !!!";
+    gotoxy(25,20);
+    cout<<"Press 1 to go back and 0 to exit:-";
+    int fd=0;
+    cin>>fd;
+    while(fd<0||fd>1)
+    {
+     gotoxy(50,20);
+     cout<<"  ";
+     gotoxy(50,20);
+     cin>>fd;
+    }
+    if(fd==0)
+    {
+     exit(0);
+    }
+    goto search1;
+
+   }
+
+
+   if(l==1)
+   {
+       gotoxy(23,21);
+       cout<<"Press 1 to modify your seats.";
+       gotoxy(23,22);
+       cout<<"Press 2 to delete your bill.";
+       gotoxy(23,23);
+       cout<<"Enter your choice :-";
+
+   }
+
+
+
+
+}
+
+void modify()
+{
+       gotoxy(23,21);
+       cout<<"                             ";
+       gotoxy(23,22);
+       cout<<"                             ";
+       gotoxy(23,23);
+       cout<<"                     ";
+
+       data.open("bill.txt",ios::in | ios::out);
+
+       while(!data.eof())
+       {
+	int p=data.tellg();
+	data.read((char*)&m1,sizeof(m1));
+	 if(::b==m1.bilno())
+	  {
+	    m1.modify();
+	    data.seekg(p);
+	    data.write((char*)&m1,sizeof(m1));
+	    break;
+
+
+	  }
+
+       }
+	gotoxy(23,22);
+	cout<<"Your ticket is modified";
+
+	data.close();
+
+
+
+}
+void loading()
+{textcolor(WHITE);
+		 gotoxy(26,21);
+		 cprintf("L");
+		 gotoxy(29,21);
+		 cprintf("O");
+		 gotoxy(32,21);
+		 cprintf("A");
+		 gotoxy(35,21);
+		 cprintf("D");
+		 gotoxy(38,21);
+		 cprintf("I");
+		 gotoxy(41,21);
+		 cprintf("N");
+		 gotoxy(44,21);
+		 cprintf("G");
+		 gotoxy(47,21);
+		 cprintf(".");
+		 gotoxy(50,21);
+		 cprintf(".");
+		 gotoxy(53,21);
+		 cprintf(".");
+		textcolor(YELLOW);
+		char ws=1500;
+
+		for(int qa=26;qa<=35;qa++)
+		{
+			gotoxy(qa,21);
+			cout<<ws;
+			delay(80);
+		}
+		for(int Z=35;Z<=45;Z++)
+		{
+			gotoxy(Z,21);
+			cout<<ws;
+			delay(40);
+		}
+		for(int q=45;q<=55;q++)
+		{
+			gotoxy(q,21);
+			cout<<ws;
+			delay(20);
+		}
+
+		 gotoxy(25,23);
+		 cprintf("You are successfully logged in ");
+
+		 delay(690);
+ }
+
+
+ void delete1()
+ {
+       gotoxy(23,21);
+       cout<<"                             ";
+       gotoxy(23,22);
+       cout<<"                             ";
+       gotoxy(23,23);
+       cout<<"                     ";
+
+  ofstream data1;
+  char confirm;
+  data.open("bill.txt",ios::in);
+  data1.open("temp.txt",ios::out);
+  while(data.read((char*)&m1,sizeof(m1)))
+  {
+    if(::b==m1.bilno())
+     {
+       gotoxy(23,23);
+       cout<<"                  ";
+       gotoxy(23,23);
+       cout<<"are you sure (y/n)";
+       cin>>confirm;
+       if(confirm=='n')
+       data1.write((char*)&m1,sizeof(m1));
+     }
+   else
+   {
+     data1.write((char*)&m1,sizeof(m1));
+   }
+  }
+  data.close();
+  data1.close();
+  remove("bill.txt");
+  rename("temp.txt","bill.txt");
+  gotoxy(23,23);
+  cout<<"                           ";
+	gotoxy(23,22);
+	cout<<"Your ticket is deleted";
+	delay(2500);
+ }
