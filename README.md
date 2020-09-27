@@ -3,7 +3,7 @@
 <h2>&nbsp;🔖 Overview</h2>
 <p>This project was my high School Project for grade 12 in the field of computer Science . 
     This is a fully ticket booking application made in C++ . 
-    Even the movie ticket data is been stored on the computer and can be retrieved, modifed and also has a facility to be deleated.
+    Even the movie ticket data is been stored on the computer and can be retrieved, modified and also has a facility to be deleated.
 </p>
 <hr>
 <h2>&nbsp;🎬Main Screen</h2>
